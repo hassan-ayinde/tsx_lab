@@ -10,4 +10,15 @@ export default defineConfig([
   { files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"], languageOptions: { globals: {...globals.browser, ...globals.node} } },
   tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
+  {
+    "settings": {
+      "react": {
+        "version": "detect"   // Detect React version automatically
+      }
+    },
+    "rules": {
+      "react/react-in-jsx-scope": "off"  // Turn off this rule, not needed with React 17+
+    }
+  }
 ]);
+
