@@ -8,39 +8,46 @@ import {
 import {useState, useEffect} from "react";
 
 type Language = {
-  name: string;
-}; 
+  title: string;
+};
 
-const LanguageSelector = () => {
-    const [selectedLanguage, setSelectedLanguage] = useState<Language[]>([]);
+type LanguageProps = {
+    value: string | null;
+    onValueChange: (value: string) => void;
+}
+
+const LanguageSelector = ({onValueChange}: LanguageProps) => {
+    const [languages, setLanguages] = useState<Language[]>([])
     
     useEffect(() => {
         const LanguageDb = async () => {
             try {
                 const response = await fetch(
-                    "https://raw.githubusercontent.com/kamranahmedse/githunt/master/src/components/filters/language-filter/languages.json"
+                    '/db.json'
                 );
                 if (!response.ok) {
                     throw new Error("Network response was not ok");
                 }
                 const data = await response.json();
-                setSelectedLanguage(data)
-                return data;
+                setLanguages(data)
             } catch (err) {
-                 console.error("Failed to fetch languages:", err);
+                console.error("Failed to fetch languages:", err);
             }
         }
-
         LanguageDb();
     }, [])
+
+    
   return (
-    <Select>
-        <SelectTrigger className="w-[280px] m-auto mt-5">
-            <SelectValue placeholder="Select a Language" />
+    <Select onValueChange={onValueChange}>
+        <SelectTrigger className="w-11/12 m-auto mt-5">
+            <SelectValue 
+                placeholder={"Select a Language"}
+            />
         </SelectTrigger>
         <SelectContent side="bottom">
             {
-                selectedLanguage.map((lang) => {
+                languages.map((lang) => {
                     return (
                         <SelectItem key={lang.title} value={lang.title}>
                             {lang.title}
