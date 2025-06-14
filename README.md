@@ -4,7 +4,7 @@ A collection of small React + TypeScript sandbox apps—each exploring specific 
 
 ## Projects included &colon
 
-- Github Repository Finder
+- Github Repository Finder [github finder](https://githubpfinder.vercel.app/)
 
 ### Prerequisites
 
@@ -17,6 +17,6 @@ Ensure you have:
 
 Clone the repo:
 
-```bash
-git clone https://github.com/hassan-ayinde/tsx_lab.git
-cd tsx_lab
+   ```bash
+   git clone https://github.com/hassan-ayinde/tsx_lab.git
+   cd tsx_lab
