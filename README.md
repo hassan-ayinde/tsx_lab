@@ -5,6 +5,7 @@ A collection of small React + TypeScript sandbox apps—each exploring specific 
 ## Projects included &colon
 
 - Github Repository Finder [github finder](https://githubpfinder.vercel.app/)
+  - [url from roadmap.sh](https://roadmap.sh/projects/github-random-repo)
 
 ### Prerequisites
 
