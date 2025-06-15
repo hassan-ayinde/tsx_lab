@@ -1,9 +1,40 @@
 // import React from 'react'
 import { FaGreaterThan } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useState} from "react";
+import axios from "axios";
 
 const SearcBar = () => {
     const [ipAddress, setIpAddress] = useState<string>("");
+    // const [error,setError] = useState<string | null>(null)
+
+    const apiKey = import.meta.env.VITE_IPADDRESS_API_TOKEN;
+
+    const fetchIpDetails = async () => {
+        try {
+            if (!ipAddress) {
+                console.error("IP address or domain is required");
+                return;
+            }
+
+            const ipResponse = await axios.get('https://geo.ipify.org/api/v2/country', {
+                params: {
+                    apiKey: apiKey,
+                    domain: ipAddress,
+
+                }
+            })
+            const ipData = ipResponse.data;
+            console.log(ipData)
+        }
+        catch (error) {
+            if (axios.isAxiosError(error)) {
+                console.error("Error fetching IP details:", error.message);
+            } else {
+                console.error("Unexpected error:", error);
+            }
+        }
+
+    }
 
     const handleIpAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setIpAddress(e.target.value);
@@ -13,7 +44,7 @@ const SearcBar = () => {
         <div className='flex items-center justify-between gap-1 mt-5 rounded-lg bg-white shadow-md w-full max-w-md mx-auto'>
             <input 
                 type="text" 
-                placeholder="Enter IP address" 
+                placeholder="Enter IP address or domain" 
                 className="w-full px-4 text-black border-0 focus:border-0 focus:outline-none"
                 value={ipAddress}
                 onChange={handleIpAddressChange}
@@ -22,9 +53,9 @@ const SearcBar = () => {
                 className="bg-gray-700 h-[40px] rounded-r-lg px-4 py-2 hover:bg-gray-800 transition-colors duration-300 cursor-pointer"
                 onClick={(e) => {
                     e.preventDefault();
-                    console.log(ipAddress);
+                    // console.log(ipAddress);
                     setIpAddress("")
-
+                    fetchIpDetails();
                 }}
             >
                 <FaGreaterThan className="h-auto"/>
