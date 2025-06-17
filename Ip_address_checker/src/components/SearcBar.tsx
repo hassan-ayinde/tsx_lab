@@ -1,10 +1,18 @@
 // import React from 'react'
 import { FaGreaterThan } from "react-icons/fa";
-import { useState} from "react";
+// import { useState} from "react";
 import axios from "axios";
+import { useIpData } from "@/context/IpDataContext";
 
-const SearcBar = () => {
-    const [ipAddress, setIpAddress] = useState<string>("");
+interface SearcBarProps {
+    ipAddress: string;
+    setIpAddress: (ip: string) => void;
+    onSearch: () => void;
+}
+
+const SearcBar = ({onSearch, ipAddress, setIpAddress}: SearcBarProps) => {
+    // const [ipAddress, setIpAddress] = useState<string>("");
+    const {setIpData} = useIpData();
     // const [error,setError] = useState<string | null>(null)
 
     const apiKey = import.meta.env.VITE_IPADDRESS_API_TOKEN;
@@ -16,15 +24,18 @@ const SearcBar = () => {
                 return;
             }
 
-            const ipResponse = await axios.get('https://geo.ipify.org/api/v2/country', {
+            const ipResponse = await axios.get('https://geo.ipify.org/api/v2/country,city', {
                 params: {
                     apiKey: apiKey,
                     domain: ipAddress,
 
                 }
             })
-            const ipData = ipResponse.data;
-            console.log(ipData)
+            setIpData(ipResponse.data)
+            console.log(ipResponse.data)
+            onSearch();
+            // const ipData = ipResponse.data;
+            // console.log(ipData)
         }
         catch (error) {
             if (axios.isAxiosError(error)) {
