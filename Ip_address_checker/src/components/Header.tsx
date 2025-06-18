@@ -10,6 +10,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({onMapShow}) => {
     const [ipAddress, setIpAddress] = useState<string>("");
     const [isSearchTriggered, setIsSearchTriggered] = useState<boolean>(false);
+    const [error,setError] = useState<string | null>(null)
   return (
     <header 
         className={`text-center bg-[url("/src/assets/pattern-bg-desktop.png")]
@@ -27,6 +28,7 @@ const Header: React.FC<HeaderProps> = ({onMapShow}) => {
             onMapShow();
           }} 
           ipAddress = {ipAddress} setIpAddress={setIpAddress}
+          error={error} setError={setError}
         />
     </header>
   )
