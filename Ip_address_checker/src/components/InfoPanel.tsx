@@ -1,4 +1,4 @@
-import { useIpData } from "@/context/IpDataContext";
+import { useIpData } from "@/lib/useIpData";
 
 const InfoPanel = () => {
     const {ipData} = useIpData();
