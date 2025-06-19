@@ -1,8 +1,6 @@
-// import React from 'react'
 import { FaGreaterThan } from "react-icons/fa";
-// import { useState} from "react";
 import axios from "axios";
-import { useIpData } from "@/context/IpDataContext";
+import { useIpData } from "@/lib/useIpData";
 
 interface SearcBarProps {
     ipAddress: string;
