@@ -8,3 +8,9 @@
 body {
     font-family: "Rubik", sans-serif;
 }
+
+@media (orientation: landscape) {
+  .landscape-top {
+    top: 45vh !important;
+  }
+}

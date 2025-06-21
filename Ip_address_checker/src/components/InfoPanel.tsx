@@ -7,8 +7,9 @@ const InfoPanel = () => {
     } 
   return (
     <div className='w-[90%] max-w-sm sm:w-[90%] sm:max-w-3xl mx-auto bg-white text-black shadow-lg rounded-xl py-2 px-7 sm:p-6 z-30 
-                 absolute left-1/2 -translate-x-1/2 top-[42%] transform text-xs sm:text-sm md:text-base
-                 grid grid-cols-2 sm:grid-cols-4 gap-3'>
+        absolute left-1/2 -translate-x-1/2 top-[46.5vh] transform text-xs sm:text-sm md:text-base
+        grid grid-cols-2 sm:grid-cols-4 gap-3 landscape-top'
+    >
         <div >
             <h2 className="capitalize font-bold">ip address</h2>
             <p>{ipData.ip}</p>
